@@ -19,12 +19,24 @@ public class AuthController {
     @Autowired
     private UserService userService;
 
+    /**
+     *
+     * @param userRequest
+     *      Login Endpoint for expose the api
+     * @author: WillCast
+     */
     @PostMapping(consumes = "application/json", value = "/login")
     @Headers("Content-Type: application/json")
     ResponseEntity<ApiResponseDTO<LoginResponseDTO>> login(@RequestBody @Valid LoginRequestDTO userRequest){
         return this.userService.login(userRequest);
     }
 
+    /**
+     *
+     * @param accessToken: token for access at the application suplied byCookieParam
+     * @param refreshToken: toker for refresh the session suplied byCookieParam
+     * @return
+     */
     @GetMapping(produces = "application/json", value = "/me")
     ResponseEntity<ApiResponseDTO<UserDetailedResponse>> getMyInformamtion(@CookieValue("accessToken") String accessToken,
                                                                            @CookieValue("refreshToken") String refreshToken){

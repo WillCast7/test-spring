@@ -14,7 +14,7 @@ Aplicación de autenticación que utiliza la API de DummyJSON para validar usuar
 ## Instrucciones de Ejecución
 
 ### Prerequisitos
-- Java 11 o superior
+- Java 21 o superior
 - PostgreSQL ejecutándose en localhost:5432
 - Maven o Gradle (según tu configuración)
 
@@ -83,17 +83,7 @@ curl --request POST \
 ## Explicación del Registro de Login
 
 ### Tabla login_log
-Cada vez que un usuario se autentica exitosamente, se crea automáticamente un registro en la tabla `login_log` con la siguiente estructura:
-
-```sql
-CREATE TABLE login_log (
-    id UUID PRIMARY KEY,
-    username VARCHAR(255) NOT NULL,
-    login_time TIMESTAMP NOT NULL,
-    access_token TEXT,
-    refresh_token TEXT
-);
-```
+Cada vez que un usuario se autentica exitosamente, se crea automáticamente un registro en la tabla `login_log`.
 
 ### Proceso de Registro
 1. **Usuario se autentica** → Se valida contra DummyJSON API

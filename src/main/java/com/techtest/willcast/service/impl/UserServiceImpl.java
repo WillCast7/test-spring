@@ -31,6 +31,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private LoginLogRepository loginLogRepository;
 
+    /**
+     *
+     * @param loginCredentials: {user, password}
+     *                        This method is the login method for create the session and
+     *                        register in the database
+     * @return
+     */
     public ResponseEntity<ApiResponseDTO<LoginResponseDTO>> login(LoginRequestDTO loginCredentials){
         try {
             ResponseEntity<LoginResponseDTO> userLogged = dummyJSONService.login(loginCredentials);
@@ -72,6 +79,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param accessToken: token for access at the application
+     * @param refreshToken: toker for refresh the session
+     *                    This method searches the information of the person with the active session
+     * @return
+     */
     public ResponseEntity<ApiResponseDTO<UserDetailedResponse>> getMyInformamtion(String accessToken, String refreshToken) {
         try {
             if (accessToken == null || accessToken.isEmpty()) {
@@ -87,6 +101,13 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    /**
+     *
+     * @param accessToken: token for access at the application
+     * @param refreshToken: toker for refresh the session
+     *                    This method searches sll the users of the person with the active session
+     * @return
+     */
     public ResponseEntity<ApiResponseDTO<UserListResponseDTO>> getAllUsers(String accessToken, String refreshToken){
         try {
             if (accessToken == null || accessToken.isEmpty()) {
